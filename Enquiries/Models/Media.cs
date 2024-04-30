@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Formatters;
 using System.ComponentModel.DataAnnotations;
 
-namespace Enquiries
+namespace Enquiries.Models
 {
     public class Media
     {

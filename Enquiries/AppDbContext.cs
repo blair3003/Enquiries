@@ -1,16 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Enquiries.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Enquiries
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext() { }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 
-        public DbSet<Enquiry> Enquiries { get; set; }
-        public DbSet<Media> Media { get; set; }
-        public DbSet<Reporter> Reporters { get; set; }
+        public virtual DbSet<Enquiry> Enquiries { get; set; }
+        public virtual DbSet<Media> Media { get; set; }
+        public virtual DbSet<Reporter> Reporters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
