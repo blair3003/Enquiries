@@ -17,19 +17,46 @@ namespace Enquiries.Services
             return await _context.Enquiries.ToListAsync();
         }
 
-        public async Task<Enquiry> GetEnquiryByIdAsync(int enquiryId)
+        public async Task<Enquiry?> GetEnquiryByIdAsync(int enquiryId)
         {
-            return null;
+            return await _context.Enquiries.FindAsync(enquiryId);
         }
 
-        public async Task<Enquiry> AddEnquiryAsync(Enquiry enquiry)
+        public async Task<Enquiry?> AddEnquiryAsync(Enquiry newEnquiry)
         {
-            return null;
+            try
+            {
+                await _context.Enquiries.AddAsync(newEnquiry);
+                await _context.SaveChangesAsync();
+                return newEnquiry;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public async Task<Enquiry> UpdateEnquiryAsync(int enquiryId, Enquiry updatedEnquiry)
+        public async Task<Enquiry?> UpdateEnquiryAsync(int enquiryId, Enquiry updatedEnquiry)
         {
-            return null;
+            try
+            {
+                var enquiry = await _context.Enquiries.FindAsync(enquiryId) ?? throw new ArgumentException("Enquiry not found.");
+
+                enquiry.MediaId = updatedEnquiry.MediaId;
+                enquiry.ReporterId = updatedEnquiry.ReporterId;
+                enquiry.Subject = updatedEnquiry.Subject;
+                enquiry.Description = updatedEnquiry.Description;
+                enquiry.Deadline = updatedEnquiry.Deadline;
+                enquiry.IsArchived = updatedEnquiry.IsArchived;
+                enquiry.UpdatedOn = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+                return enquiry;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 

@@ -17,19 +17,41 @@ namespace Enquiries.Services
             return await _context.Media.ToListAsync();
         }
 
-        public async Task<Media> GetMediaByIdAsync(int mediaId)
+        public async Task<Media?> GetMediaByIdAsync(int mediaId)
         {
-            return null;
+            return await _context.Media.FindAsync(mediaId);
         }
 
-        public async Task<Media> AddMediaAsync(Media media)
+        public async Task<Media?> AddMediaAsync(Media newMedia)
         {
-            return null;
+            try
+            {
+                await _context.Media.AddAsync(newMedia);
+                await _context.SaveChangesAsync();
+                return newMedia;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public async Task<Media> UpdateMediaAsync(int mediaId, Media updatedMedia)
+        public async Task<Media?> UpdateMediaAsync(int mediaId, Media updatedMedia)
         {
-            return null;
+            try
+            {
+                var media = await _context.Media.FindAsync(mediaId) ?? throw new ArgumentException("Media not found.");
+
+                media.Name = updatedMedia.Name;
+                media.Type = updatedMedia.Type;
+
+                await _context.SaveChangesAsync();
+                return media;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

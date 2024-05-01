@@ -12,7 +12,7 @@ namespace Enquiries.Models
         public string? Description { get; set; }
         public DateTime? Deadline { get; set; }
         public bool IsArchived { get; set; } = false;
-        public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public DateTime CreatedOn { get; } = DateTime.Now;
         public DateTime UpdatedOn { get; set; } = DateTime.Now;
 
         // Navigation properties

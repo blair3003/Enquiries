@@ -17,19 +17,45 @@ namespace Enquiries.Services
             return await _context.Reporters.ToListAsync();
         }
 
-        public async Task<Reporter> GetReporterByIdAsync(int reporterId)
+        public async Task<Reporter?> GetReporterByIdAsync(int reporterId)
         {
-            return null;
+            return await _context.Reporters.FindAsync(reporterId);
         }
 
-        public async Task<Reporter> AddReporterAsync(Reporter reporter)
+        public async Task<Reporter?> AddReporterAsync(Reporter newReporter)
         {
-            return null;
+            try
+            {
+                await _context.Reporters.AddAsync(newReporter);
+                await _context.SaveChangesAsync();
+                return newReporter;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public async Task<Reporter> UpdateReporterAsync(int reporterId, Reporter updatedReporter)
+        public async Task<Reporter?> UpdateReporterAsync(int reporterId, Reporter updatedReporter)
         {
-            return null;
+            try
+            {
+                var reporter = await _context.Reporters.FindAsync(reporterId) ?? throw new ArgumentException("Reporter not found.");
+
+                reporter.Name = updatedReporter.Name;
+                reporter.MediaId = updatedReporter.MediaId;
+                reporter.Email = updatedReporter.Email;
+                reporter.Tel = updatedReporter.Tel;
+                reporter.Mobile = updatedReporter.Mobile;
+                reporter.IsActive = updatedReporter.IsActive;
+
+                await _context.SaveChangesAsync();
+                return reporter;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
     }
