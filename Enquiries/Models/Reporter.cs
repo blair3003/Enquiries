@@ -6,17 +6,11 @@ namespace Enquiries.Models
     {
         [Key]
         public int ReporterId { get; set; }
-
-        [Required]
-        [StringLength(100)]
+        public int? MediaId { get; set; }
         public string? Name { get; set; }
-
         public string? Email { get; set; }
-
         public string? Tel { get; set; }
-
         public string? Mobile { get; set; }
-
         public bool IsActive { get; set; } = true;
 
         // Navigation properties

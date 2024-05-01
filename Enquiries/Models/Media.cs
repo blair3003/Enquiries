@@ -7,13 +7,8 @@ namespace Enquiries.Models
     {
         [Key]
         public int MediaId { get; set; }
-
-        [Required]
-        [StringLength(100)]
         public string? Name { get; set; }
-
-        [Required]
-        public MediaType Type { get; set; }  // Enum for media type
+        public MediaType? Type { get; set; }  // Enum for media type
 
         // Navigation properties
         public virtual ICollection<Enquiry>? Enquiries { get; set; }

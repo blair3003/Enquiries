@@ -28,6 +28,24 @@ namespace Enquiries
             modelBuilder.Entity<Reporter>()
                 .HasIndex(r => r.Name)
                 .IsUnique();
+
+            // Defining set null behaviour for the Reporter entity on Media deletion 
+            modelBuilder.Entity<Reporter>()
+                .HasOne(e => e.Media)
+                .WithMany(m => m.Reporters)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Defining set null behaviour for the Enquiry entity on Media deletion 
+            modelBuilder.Entity<Enquiry>()
+                .HasOne(e => e.Media)
+                .WithMany(m => m.Enquiries)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Defining set null behaviour for the Enquiry entity on Reporter deletion 
+            modelBuilder.Entity<Enquiry>()
+                .HasOne(e => e.Reporter)
+                .WithMany(m => m.Enquiries)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
