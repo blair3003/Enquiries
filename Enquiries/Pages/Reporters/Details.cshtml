@@ -1,0 +1,18 @@
+﻿@page "/Reporters/{ReporterId:int}"
+@model Reporters.DetailsModel
+@{
+    ViewData["Title"] = $"Reporter #{Model.ReporterId}";
+}
+
+<h1>Reporter Details</h1>
+
+@if (Model.Reporter != null)
+{
+    <strong>ReporterId:</strong> @Model.ReporterId
+    <br />
+    <strong>Name:</strong> @Model.Reporter.Name
+    <br />
+    <strong>MediaId:</strong> <a asp-page="/Media/Details" asp-route-MediaId="@Model.Reporter.MediaId">@Model.Reporter.MediaId</a>
+    <br />
+    <a asp-page="/Reporter/Edit" asp-route-ReporterId="@Model.ReporterId">Edit Details</a>
+}

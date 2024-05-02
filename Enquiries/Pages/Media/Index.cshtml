@@ -1,0 +1,19 @@
+﻿@page
+@model Media.IndexModel
+@{
+    ViewData["Title"] = "Media";
+}
+
+<h1>Media</h1>
+
+<ul>
+    @foreach (var media in Model.Media)
+    {
+        <li>
+            <strong>MediaId:</strong> @media.MediaId <br />
+            <strong>Name:</strong> @media.Name <br />
+            <strong>Type:</strong> @media.Type <br />
+            <a asp-page="/Media/Details" asp-route-MediaId="@media.MediaId">View Details</a>
+        </li>
+    }
+</ul>

@@ -1,4 +1,5 @@
 using Enquiries;
+using Enquiries.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
+builder.Services.AddScoped<EnquiryService>();
+builder.Services.AddScoped<MediaService>();
+builder.Services.AddScoped<ReporterService>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

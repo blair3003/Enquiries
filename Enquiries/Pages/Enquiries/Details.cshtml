@@ -1,0 +1,30 @@
+﻿@page "/Enquiries/{EnquiryId:int}"
+@model Enquiries.DetailsModel
+@{
+    ViewData["Title"] = $"Enquiry #{Model.EnquiryId}";
+}
+
+<h1>Enquiry Details</h1>
+
+@if (Model.Enquiry != null)
+{
+    <strong>EnquiryId:</strong> @Model.EnquiryId
+    <br />
+    <strong>MediaId:</strong> <a asp-page="/Media/Details" asp-route-MediaId="@Model.Enquiry.MediaId">@Model.Enquiry.MediaId</a>
+    <br />
+    <strong>ReporterId:</strong> <a asp-page="/Reporters/Details" asp-route-ReporterId="@Model.Enquiry.ReporterId">@Model.Enquiry.ReporterId</a>
+    <br />
+    <strong>Subject:</strong> @Model.Enquiry.Subject
+    <br />
+    <strong>Description:</strong> @Model.Enquiry.Description
+    <br />
+    <strong>Deadline:</strong> @Model.Enquiry.Deadline
+    <br />
+    <strong>IsArchived:</strong> @Model.Enquiry.IsArchived
+    <br />
+    <strong>CreatedOn:</strong> @Model.Enquiry.CreatedOn
+    <br />
+    <strong>UpdatedOn:</strong> @Model.Enquiry.UpdatedOn
+    <br />
+    <a asp-page="/Enquiries/Edit" asp-route-EnquiryId="@Model.EnquiryId">Edit Details</a>
+}

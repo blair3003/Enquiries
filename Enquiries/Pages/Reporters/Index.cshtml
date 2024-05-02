@@ -1,0 +1,19 @@
+﻿@page
+@model Reporters.IndexModel
+@{
+    ViewData["Title"] = "Reporters";
+}
+
+<h1>Reporters</h1>
+
+<ul>
+    @foreach (var reporter in Model.Reporters)
+    {
+        <li>
+            <strong>ReporterId:</strong> @reporter.ReporterId <br />
+            <strong>Name:</strong> @reporter.Name <br />
+            <strong>MediaId:</strong> @reporter.MediaId <br />
+            <a asp-page="/Reporters/Details" asp-route-ReporterId="@reporter.ReporterId">View Details</a>
+        </li>
+    }
+</ul>

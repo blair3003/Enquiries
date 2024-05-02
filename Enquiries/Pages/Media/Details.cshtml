@@ -1,0 +1,18 @@
+﻿@page "/Media/{MediaId:int}"
+@model Media.DetailsModel
+@{
+    ViewData["Title"] = $"Media #{Model.MediaId}";
+}
+
+<h1>Media Details</h1>
+
+@if (Model.Media != null)
+{
+    <strong>MediaId:</strong> @Model.MediaId
+    <br />
+    <strong>Name:</strong> @Model.Media.Name
+    <br />
+    <strong>Type:</strong> @Model.Media.Type
+    <br />
+    <a asp-page="/Media/Edit" asp-route-MediaId="@Model.MediaId">Edit Details</a>
+}

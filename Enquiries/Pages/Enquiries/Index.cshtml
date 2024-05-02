@@ -1,0 +1,25 @@
+﻿@page
+@model Enquiries.IndexModel
+@{
+    ViewData["Title"] = "Enquiries";
+}
+
+<h1>Enquiries</h1>
+
+<ul>
+    @foreach (var enquiry in Model.Enquiries)
+    {
+        <li>
+            <strong>EnquiryId:</strong> @enquiry.EnquiryId <br />
+            <strong>MediaId:</strong> @enquiry.MediaId <br />
+            <strong>ReporterId:</strong> @enquiry.ReporterId <br />
+            <strong>Subject:</strong> @enquiry.Subject <br />
+            <strong>Description:</strong> @enquiry.Description <br />
+            <strong>Deadline:</strong> @enquiry.Deadline <br />
+            <strong>IsArchived:</strong> @enquiry.IsArchived <br />
+            <strong>CreatedOn:</strong> @enquiry.CreatedOn <br />
+            <strong>UpdatedOn:</strong> @enquiry.UpdatedOn <br />
+            <a asp-page="/Enquiries/Details" asp-route-EnquiryId="@enquiry.EnquiryId">View Details</a>
+        </li>
+    }
+</ul>

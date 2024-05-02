@@ -14,12 +14,30 @@ namespace Enquiries.Services
 
         public async Task<List<Enquiry>> GetAllEnquiriesAsync()
         {
-            return await _context.Enquiries.ToListAsync();
+            //return await _context.Enquiries.ToListAsync();
+
+            var data = new List<Enquiry>
+            {
+                new() { EnquiryId = 1, Subject = "Enquiry 1" },
+                new() { EnquiryId = 2, Subject = "Enquiry 2" },
+                new() { EnquiryId = 3, Subject = "Enquiry 3" }
+            };
+
+            return data;
         }
 
         public async Task<Enquiry?> GetEnquiryByIdAsync(int enquiryId)
         {
-            return await _context.Enquiries.FindAsync(enquiryId);
+            //return await _context.Enquiries.FindAsync(enquiryId);
+
+            var data = new List<Enquiry>
+            {
+                new() { EnquiryId = 1, Subject = "Enquiry 1", MediaId = 1, ReporterId = 1 },
+                new() { EnquiryId = 2, Subject = "Enquiry 2", MediaId = 2, ReporterId = 2 },
+                new() { EnquiryId = 3, Subject = "Enquiry 3", MediaId = 3, ReporterId = 3 }
+            };
+
+            return data.FirstOrDefault(e => e.EnquiryId == enquiryId);
         }
 
         public async Task<Enquiry?> AddEnquiryAsync(Enquiry newEnquiry)
