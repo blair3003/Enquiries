@@ -1,0 +1,36 @@
+﻿@page "/Media/{MediaId:int}/Edit"
+@using global::Enquiries.Models
+@model Pages.Media.EditModel
+@{
+    ViewData["Title"] = $"Edit Media #{Model.MediaId}";
+}
+
+<h1>Edit Media</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="MediaId" />
+
+    <div class="form-group">
+        <label asp-for="MediaInput.Name"></label>
+        <input asp-for="MediaInput.Name" class="form-control" />
+        <span asp-validation-for="MediaInput.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MediaInput.Type"></label>
+        <select asp-for="MediaInput.Type" class="form-control">
+            <option value="">-- Select Type --</option>
+            @foreach (var type in Enum.GetValues(typeof(MediaType)))
+            {
+                <option value="@type">@type</option>
+            }
+        </select>
+        <span asp-validation-for="MediaInput.Type" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

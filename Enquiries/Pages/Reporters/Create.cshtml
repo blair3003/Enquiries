@@ -1,0 +1,54 @@
+﻿@page "/Reporters/Create"
+@model Reporters.CreateModel
+@{
+    ViewData["Title"] = "Create Reporter";
+}
+
+<h1>Create Reporter</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="ReporterInput.Name"></label>
+        <input asp-for="ReporterInput.Name" class="form-control" />
+        <span asp-validation-for="ReporterInput.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReporterInput.Email"></label>
+        <input asp-for="ReporterInput.Email" class="form-control" />
+        <span asp-validation-for="ReporterInput.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReporterInput.Tel"></label>
+        <input asp-for="ReporterInput.Tel" class="form-control" />
+        <span asp-validation-for="ReporterInput.Tel" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReporterInput.Mobile"></label>
+        <input asp-for="ReporterInput.Mobile" class="form-control" />
+        <span asp-validation-for="ReporterInput.Mobile" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReporterInput.IsActive"></label>
+        <select asp-for="ReporterInput.IsActive" class="form-control">
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReporterInput.MediaId"></label>
+        <select asp-for="ReporterInput.MediaId" class="form-control" asp-items="@Model.Media.Select(m => new SelectListItem { Value = m.MediaId.ToString(), Text = m.Name })">
+            <option value="">-- Select Media --</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

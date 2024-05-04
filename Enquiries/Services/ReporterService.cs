@@ -14,30 +14,12 @@ namespace Enquiries.Services
 
         public async Task<List<Reporter>> GetAllReportersAsync()
         {
-            //return await _context.Reporters.ToListAsync();
-
-            var data = new List<Reporter>
-            {
-                new() { ReporterId = 1, Name = "Reporter 1" },
-                new() { ReporterId = 2, Name = "Reporter 2" },
-                new() { ReporterId = 3, Name = "Reporter 3" }
-            };
-
-            return data;
+            return await _context.Reporters.ToListAsync();
         }
 
         public async Task<Reporter?> GetReporterByIdAsync(int reporterId)
         {
-            //return await _context.Reporters.FindAsync(reporterId);
-
-            var data = new List<Reporter>
-            {
-                new() { ReporterId = 1, Name = "Reporter 1", MediaId = 1 },
-                new() { ReporterId = 2, Name = "Reporter 2", MediaId = 2 },
-                new() { ReporterId = 3, Name = "Reporter 3", MediaId = 3 }
-            };
-
-            return data.FirstOrDefault(r => r.ReporterId == reporterId);
+            return await _context.Reporters.FindAsync(reporterId);
         }
 
         public async Task<Reporter?> AddReporterAsync(Reporter newReporter)

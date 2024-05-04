@@ -1,0 +1,55 @@
+﻿@page "/Enquiries/Create"
+@model Enquiries.CreateModel
+@{
+    ViewData["Title"] = "Create Enquiry";
+}
+
+<h1>Create Enquiry</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="EnquiryInput.Subject"></label>
+        <input asp-for="EnquiryInput.Subject" class="form-control" />
+        <span asp-validation-for="EnquiryInput.Subject" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnquiryInput.Description"></label>
+        <textarea asp-for="EnquiryInput.Description" class="form-control"></textarea>
+        <span asp-validation-for="EnquiryInput.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnquiryInput.Deadline"></label>
+        <input asp-for="EnquiryInput.Deadline" type="date" class="form-control" />
+        <span asp-validation-for="EnquiryInput.Deadline" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnquiryInput.IsArchived"></label>
+        <select asp-for="EnquiryInput.IsArchived" class="form-control">
+            <option value="true">Yes</option>
+            <option value="false" selected>No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnquiryInput.MediaId"></label>
+        <select asp-for="EnquiryInput.MediaId" class="form-control" asp-items="@(new SelectList(Model.Media, "MediaId", "Name"))">
+            <option value="">-- Select Media --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnquiryInput.ReporterId"></label>
+        <select asp-for="EnquiryInput.ReporterId" class="form-control" asp-items="@(new SelectList(Model.Reporters, "ReporterId", "Name"))">
+            <option value="">-- Select Reporter --</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

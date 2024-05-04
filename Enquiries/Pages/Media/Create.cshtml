@@ -1,0 +1,30 @@
+﻿@page "/Media/Create"
+@model Media.CreateModel
+@{
+    ViewData["Title"] = "New Media";
+}
+
+<h1>Create new Media</h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="MediaInput.Name"></label>
+        <input asp-for="MediaInput.Name" class="form-control" />
+        <span asp-validation-for="MediaInput.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <select asp-for="MediaInput.Type">
+            <option value="Local">Local</option>
+            <option value="National">National</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
